@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta charset="utf-8">
+    <title>Logistic test - Chart.js</title>
+	<link rel='stylesheet' type='text/css' href='style.css'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+	<div class='heading'>
+		<h3>Logistic equation plotting tool</h3>
+	</div>
+	<form>
+	<div class='form-group'>
+		<div class='labels'><label for='iterations'>Iterations</label></div>
+		<input class="form-control" id='iterations' type="number">
+		<p class='hint'>Integer from 0 to 2000</p>
+	</div>
+	<div class="form-group">
+		<div class='labels'><label for='initial'>Initial condition</label></div>
+		<input class="form-control" id='initial' type="number" step='0.0000001'>
+		<input class="form-control" id='initial2' type="number" step='0.0000001'>
+		<p class='hint'>Floating point number from 0 to 1</p>
+	</div>
+	<div class="form-group">
+		<div class='labels'><label for='coef'>R</label></div>
+		<input class="form-control" id='coef' type="number" step='0.0000001'>
+		<input class="form-control" id='coef2' type="number" step='0.0000001'>
+		<p class='hint'>Floating point number from 0 to 4</p>
+	</div>
+	<div class="button-group">
+		<input type='checkbox' id='checkbox' name='difference' value='1'>
+		<label for='checkbox'>Calculate difference</label>
+	<div>
+	<button id='plot-btn' type='button' onclick='calcPoints()'>Plot</button>
+	</form>
+	
+	
+	<div class='container'>
+		<canvas id='myChart'></canvas>
+	</div>
+	
+	<script src='script.js'></script>
+	
+  </body>
+
+</html>
+
+

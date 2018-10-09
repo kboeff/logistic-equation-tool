@@ -1,0 +1,60 @@
+body {
+  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Segoe UI Symbol";
+}
+
+.heading {
+	height: 50px;
+}
+
+.form-control {
+	border: 1px solid #061539;
+	border-radius: 3px;
+	height: 30px;
+}
+
+.labels {
+	width: 120px;
+}
+
+.form-group {
+	display: flex;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.button-group {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#plot-btn {
+	border: 1px solid #0aafcc;
+	border-radius: 5px;
+	width: 120px;
+	height: 30px;
+	margin-top: 30px;
+	background-color: #000;
+	color: #0aafcc;
+}
+
+#plot-btn:hover {
+	background-color: #a0c0f0;
+	color: #fff;
+}
+
+.hint {
+	font-size: 0.6em;
+	color: #f01D15;
+	margin-left: 10px;
+	display: none;
+}
+input:focus + .hint {
+	display: inline;
+}
+input:focus + input + .hint {
+	display: inline;
+}
+
+#coef2, #initial2 {
+	display: none;
+}
