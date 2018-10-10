@@ -3,19 +3,22 @@
   <head>
   
     <meta charset="utf-8">
-    <title>Logistic test - Chart.js</title>
+    <title>Logistic test</title>
 	<link rel='stylesheet' type='text/css' href='style.css'>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
   </head>
   <body>
 	<div class='heading'>
 		<h3>Logistic equation plotting tool</h3>
+		<h5>For more information, please visit <a href='https://www.complexityexplorer.org/courses/92-nonlinear-dynamics-mathematical-and-computational-approaches' target='_blank'>this course on the Complexity Explorer</a></h5>
+		<h5><a href='#' id='instructions' onclick='toggleInstructions()'>Show Instructions &rArr;</a></h5>
+		<p id="instr-text"></p>
 	</div>
 	<form>
 	<div class='form-group'>
 		<div class='labels'><label for='iterations'>Iterations</label></div>
 		<input class="form-control" id='iterations' type="number">
-		<p class='hint'>Integer from 0 to 2000</p>
+		<p class='hint'>Plot from 0 to 2,000, AAD from 0 to 500,000</p>
 	</div>
 	<div class="form-group">
 		<div class='labels'><label for='initial'>Initial condition</label></div>
@@ -32,8 +35,17 @@
 	<div class="button-group">
 		<input type='checkbox' id='checkbox' name='difference' value='1'>
 		<label for='checkbox'>Calculate difference</label>
-	<div>
+	</div>
+	<div class='aad-section'>
 	<button id='plot-btn' type='button' onclick='calcPoints()'>Plot</button>
+	<button id='aad-btn' type='button' onclick='calcAAD()'>Average Absolute Difference</button>
+		
+		<h4 class='aad' id='aad-heading'>Average Absolute Difference</h4>
+		<div class='aad'>
+			<p id='aad-info'>Sum of |x(n) - x&#39;(n)| divided by Iterations(n):&nbsp;</p>
+			<p id='aad-text'></p>
+		</div>
+	</div>
 	</form>
 	
 	
@@ -41,8 +53,14 @@
 		<canvas id='myChart'></canvas>
 	</div>
 	
-	<script src='script.js'></script>
+	<section id="footer">
+		<div id="github-div">
+			<p>Made by </p>
+			<a id="profile-link" href="https://github.com/kboeff/" target="_blank"><img width="50px" id="gitlogo" src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="git logo"></a>
+		</div>
+	</section>
 	
+	<script src='script.js'></script>
   </body>
 
 </html>
