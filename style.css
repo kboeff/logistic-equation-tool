@@ -3,13 +3,32 @@ body {
 }
 
 .heading {
-	height: 50px;
+	height: auto;
+	background-color: #0ac0cf;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+	color: #fff;
+}
+.heading h3, .heading h5 {
+	margin-top: 0px;
+	margin-left: 10px;
+}
+.heading a {
+	text-decoration: none;
+	color: #000;
+}
+
+#instr-text {
+	display: none;
 }
 
 .form-control {
 	border: 1px solid #061539;
 	border-radius: 3px;
 	height: 30px;
+	margin-left: 5px;
 }
 
 .labels {
@@ -36,9 +55,20 @@ body {
 	background-color: #000;
 	color: #0aafcc;
 }
+#aad-btn {
+	border: 1px solid #0aafcc;
+	border-radius: 5px;
+	height: 30px;
+	background-color: #000;
+	color: #0aafcc;
+}
 
-#plot-btn:hover {
-	background-color: #a0c0f0;
+#aad-heading {
+	margin-bottom: 0px;
+}
+
+#plot-btn:hover, #aad-btn:hover {
+	background-color: #0ac0cf;
 	color: #fff;
 }
 
@@ -48,6 +78,7 @@ body {
 	margin-left: 10px;
 	display: none;
 }
+
 input:focus + .hint {
 	display: inline;
 }
@@ -57,4 +88,20 @@ input:focus + input + .hint {
 
 #coef2, #initial2 {
 	display: none;
+}
+
+.aad {
+	font-style: italic;
+	display: none;
+}
+#aad-text {
+	color: #0aafcc;
+}
+#github-div {
+	margin-top: 10vh;
+	display: flex;
+	color: #aaa;
+}
+#github-div:hover {
+	color: #0aafcc;
 }
