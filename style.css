@@ -1,7 +1,7 @@
 body {
   font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Segoe UI Symbol";
 }
-
+/* Heading section */
 .heading {
 	height: auto;
 	background-color: #0ac0cf;
@@ -20,10 +20,12 @@ body {
 	color: #000;
 }
 
+/* Instructions text */
 #instr-text {
 	display: none;
 }
 
+/* Form inputs and buttons */ 
 .form-control {
 	border: 1px solid #061539;
 	border-radius: 3px;
@@ -55,6 +57,7 @@ body {
 	background-color: #000;
 	color: #0aafcc;
 }
+
 #aad-btn {
 	border: 1px solid #0aafcc;
 	border-radius: 5px;
@@ -97,6 +100,8 @@ input:focus + input + .hint {
 #aad-text {
 	color: #0aafcc;
 }
+
+/* Footer section */
 #github-div {
 	margin-top: 10vh;
 	display: flex;
