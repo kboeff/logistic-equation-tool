@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-  
     <meta charset="utf-8">
     <title>Logistic test</title>
 	<link rel='stylesheet' type='text/css' href='style.css'>
+	<!-- CDN for Chart.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
   </head>
+  
   <body>
-	<div class='heading'>
+	<section class='heading'>
 		<h3>Logistic equation plotting tool</h3>
 		<h5>For more information, please visit <a href='https://www.complexityexplorer.org/courses/92-nonlinear-dynamics-mathematical-and-computational-approaches' target='_blank'>this course on the Complexity Explorer</a></h5>
 		<h5><a href='#' id='instructions' onclick='toggleInstructions()'>Show Instructions &rArr;</a></h5>
 		<p id="instr-text"></p>
-	</div>
+	</section>
+	<section class='main'>
 	<form>
 	<div class='form-group'>
 		<div class='labels'><label for='iterations'>Iterations</label></div>
@@ -37,9 +39,8 @@
 		<label for='checkbox'>Calculate difference</label>
 	</div>
 	<div class='aad-section'>
-	<button id='plot-btn' type='button' onclick='calcPoints()'>Plot</button>
-	<button id='aad-btn' type='button' onclick='calcAAD()'>Average Absolute Difference</button>
-		
+		<button id='plot-btn' type='button' onclick='calcPoints()'>Plot</button>
+		<button id='aad-btn' type='button' onclick='calcAAD()'>Average Absolute Difference</button>		
 		<h4 class='aad' id='aad-heading'>Average Absolute Difference</h4>
 		<div class='aad'>
 			<p id='aad-info'>Sum of |x(n) - x&#39;(n)| divided by Iterations(n):&nbsp;</p>
@@ -52,6 +53,7 @@
 	<div class='container'>
 		<canvas id='myChart'></canvas>
 	</div>
+	</section>
 	
 	<section id="footer">
 		<div id="github-div">
