@@ -1,3 +1,4 @@
+// Show/Hide the instructions for use
 let isInstructed = true;
 const toggleInstructions = () => {
 	let show = document.getElementById('instructions');
@@ -16,9 +17,7 @@ const toggleInstructions = () => {
 	isInstructed = !isInstructed;
 }
 
-
-
-// handling checkbox events
+// Handling checkbox events
 let checkbox = document.getElementById('checkbox');
 let initial2 = document.getElementById('initial2');
 let coeffitient2 = document.getElementById('coef2');
@@ -38,7 +37,7 @@ checkbox.addEventListener('change', function(){
 });
 
 
-// Data points
+// Calculate data points
 const calcPoints = () => {
 	// Get input values
 	let iterations = parseInt(document.getElementById('iterations').value) || 100;
@@ -89,8 +88,8 @@ const calcPoints = () => {
 		console.log(multiResults);
 		return plotChart(multiResults, labels);
 	} else {
-		console.log(results, 'single');
 		multi = false;
+		console.log(results);
 		return plotChart(results, labels);
 	}
 }
@@ -108,7 +107,7 @@ const plotChart = (results, newLabels) => {
 	}
 	// Global options
 	// Chart.defaults.global.defaultFontFamily = 'Arial';
-
+	
 	let massPopChart = new Chart(myChart, {
 		type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
 		data: {
@@ -164,6 +163,8 @@ const plotChart = (results, newLabels) => {
 	return massPopChart;
 }
 
+// Calculate Average absolute difference
+// TODO: refactor code according to the DRY principle -> use logic from calcPoints
 const calcAAD = () => {
 	if(!isDifChecked) {
 		return 1;
