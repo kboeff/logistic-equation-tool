@@ -106,7 +106,7 @@ const plotChart = (results, newLabels) => {
 		}
 	}
 	// Global options
-	// Chart.defaults.global.defaultFontFamily = 'Arial';
+	Chart.defaults.global.hover.animationDuration = 1000;
 	
 	let massPopChart = new Chart(myChart, {
 		type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -122,6 +122,7 @@ const plotChart = (results, newLabels) => {
 			}]
 		},
 		options: {
+			responsiveAnimationDuration: 1,
 			title: {
 				display: true,
 				text: 'Logistic Equation Plot',
@@ -147,7 +148,7 @@ const plotChart = (results, newLabels) => {
 					labelString: 'Iterations (n)'
 				  }
 				}]
-			}     
+			}		
 			
 		},
 		layout: {
@@ -159,9 +160,10 @@ const plotChart = (results, newLabels) => {
 			}
 		}
 	});
-
+	
 	return massPopChart;
 }
+
 
 // Calculate Average absolute difference
 // TODO: refactor code according to the DRY principle -> use logic from calcPoints
@@ -200,4 +202,26 @@ const calcAAD = () => {
 	console.log(sum, iterations);
 	document.getElementById('aad-text').innerHTML = (sum/iterations).toFixed(5).toString();
 	return 0;	
+}
+
+
+// Bifurcation diagram - logic only
+const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
+	let data = [];
+	
+	// Iterate x-axis
+	for(let i = rMin; i <= rMax; i+=rStep) {
+		let column = {};
+		let x = x0;
+		
+		// filling the y-axis or column of dots
+		for(let j = 1; j <= n; j++) {
+			x = i * x * (1 - x);
+			if(j > discard) {
+				column[j] = x;
+			}
+		}
+		
+	}
+	
 }
