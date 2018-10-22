@@ -24,6 +24,14 @@ body {
 #instr-text {
 	display: none;
 }
+#animated-h {
+  animation-duration: 1.5s;
+  animation-delay: 1s;
+  animation-iteration-count: 2;
+}
+#instructions:hover {
+  color: #fff;
+}
 
 /* Form inputs and buttons */ 
 .form-control {

@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Logistic test</title>
 	<link rel='stylesheet' type='text/css' href='style.css'>
-	<!-- CDN for Chart.js -->
+	<!-- CDN for Animate.css and Chart.js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
   </head>
   
@@ -12,7 +13,7 @@
 	<section class='heading'>
 		<h3>Logistic equation plotting tool</h3>
 		<h5>For more information, please visit <a href='https://www.complexityexplorer.org/courses/92-nonlinear-dynamics-mathematical-and-computational-approaches' target='_blank'>this course on the Complexity Explorer</a></h5>
-		<h5><a href='#' id='instructions' onclick='toggleInstructions()'>Show Instructions &rArr;</a></h5>
+		<h5 class="animated flash delay-2s" id='animated-h'><a href='#' id='instructions' onclick='toggleInstructions()'>Show Instructions &rArr;</a></h5>
 		<p id="instr-text"></p>
 	</section>
 	<section class='main'>
@@ -66,5 +67,3 @@
   </body>
 
 </html>
-
-
