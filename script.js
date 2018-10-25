@@ -17,14 +17,32 @@ const toggleInstructions = () => {
 	isInstructed = !isInstructed;
 }
 
-// Handling checkbox events
-let checkbox = document.getElementById('checkbox');
+// Handling checkbox events for Toggle Mode
+let modeCheck = document.getElementById('check-mode');
+let mapMode = true;
+let mapChart = document.getElementById('map-chart');
+let bifurcationChart = document.getElementById('bifurcation-chart');
+
+modeCheck.addEventListener('change', function(){ 
+	if(this.checked) {
+		bifurcationChart.style.display = 'block';
+		mapChart.style.display = 'none';
+		mapMode = false;
+	} else {
+		bifurcationChart.style.display = 'none';
+		mapChart.style.display = 'block';
+		mapMode = true;
+	}
+});
+
+// Handling checkbox events for Calculate Difference
+let differenceCheck = document.getElementById('checkbox-difference');
 let initial2 = document.getElementById('initial2');
 let coeffitient2 = document.getElementById('coef2');
 let isDifChecked = false;
 let multi = false; // if datapoints are too little to display by Chart.js, they are multiplied by 10^6
 
-checkbox.addEventListener('change', function(){ 
+differenceCheck.addEventListener('change', function(){ 
 	if(this.checked) {
 		coeffitient2.style.display = 'inline';
 		initial2.style.display = 'inline';
@@ -223,5 +241,4 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 		}
 		
 	}
-	
 }
