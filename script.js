@@ -8,17 +8,16 @@ const toggleInstructions = () => {
 	if(isInstructed) {
 		show.innerHTML = 'Hide Instructions &lArr;';
 		text.style.display = 'block';
-		
 	} else {
 		show.innerHTML = 'Show Instructions &rArr;';
 		text.style.display = 'none';
-		
 	}
 	isInstructed = !isInstructed;
 }
 
 // Handling checkbox events for Toggle Mode
 let modeCheck = document.getElementById('check-mode');
+let modeText = document.getElementsByClassName('top-text')[0];
 let mapMode = true;
 let mapChart = document.getElementById('map-chart');
 let bifurcationChart = document.getElementById('bifurcation-chart');
@@ -27,10 +26,14 @@ modeCheck.addEventListener('change', function(){
 	if(this.checked) {
 		bifurcationChart.style.display = 'block';
 		mapChart.style.display = 'none';
+		modeText.innerHTML = 'Bifurcation Diagram';
+		modeText.style.color = '#ec7396';
 		mapMode = false;
 	} else {
 		bifurcationChart.style.display = 'none';
 		mapChart.style.display = 'block';
+		modeText.innerHTML = 'Logistic Map';
+		modeText.style.color = '#fff';
 		mapMode = true;
 	}
 });

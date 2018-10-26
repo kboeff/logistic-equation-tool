@@ -23,7 +23,7 @@
 				  <input type="checkbox" id='check-mode'>
 				  <span class="slider round"></span>
 				</label>
-				<div id='mode-text'><span class='top-text'>Logistic map</span></div>
+				<div id='mode-text'><span class='top-text'>Logistic Map</span></div>
 			</div>
 		</div>
 		<div id='instructions-block'>
@@ -34,6 +34,7 @@
 	<section class='main-section'>
 	<div class='form-container' id='map-chart'>
 		<form>
+		<p><strong>Logistic Map</strong></p>
 		<div class='form-group'>
 			<div class='labels'><label for='iterations'>Iterations</label></div>
 			<input class="form-control" id='iterations' type="number">
@@ -51,10 +52,13 @@
 			<input class="form-control" id='coef2' type="number" step='0.0000001'>
 			<p class='hint'>Floating point number from 0 to 4</p>
 		</div>
-		<div class="button-group">
-			<input type='checkbox' id='checkbox-difference' name='difference' value='1'>
-			<label for='checkbox'>Calculate difference</label>
-		</div>
+		<div class='container in-line'>
+				<label class="switch">
+				  <input type="checkbox" id='checkbox-difference'>
+				  <span class="slider round"></span>
+				</label>
+				<div id='mode-text'><span class='top-text'>Calculate difference</span></div>
+			</div>
 		<div class='aad-section'>
 			<button class='plot-btn' id='plot-btn' type='button' onclick='calcPoints()'>Plot</button>
 			<button id='aad-btn' type='button' onclick='calcAAD()'>Average Absolute Difference</button>		
@@ -68,6 +72,7 @@
 	</div>
 	<div class='form-container' id='bifurcation-chart'>
 		<form>
+		<p><strong>Bifurcation Diagram</strong></p>
 		<div class="form-group">
 			<div class='labels'><label for='iterates-bifu'>Iterations <em>n</em></label></div>
 			<input class="form-control bifu" id='iterates-bifu' type="number">
