@@ -71,7 +71,7 @@ const calcPoints = () => {
 	if(iterations < 0 || iterations > 2000 ||
 	  initial < 0 || initial > 1 ||
 	  coef < 0 || coef > 4) {
-		alert('Invalid input, expect the unexpected.');
+		alert('Invalid input, please try again.');
 		return 1;
 	} 
 	
@@ -208,7 +208,7 @@ const calcAAD = () => {
 	if(iterations < 0 || iterations > 500000 ||
 	  initial < 0 || initial > 1 ||
 	  coef < 0 || coef > 4) {
-		alert('Invalid input, expect the unexpected.');
+		alert('Invalid input, please try again.');
 	} 
 	
 	let sum = 0;
@@ -226,7 +226,7 @@ const calcAAD = () => {
 }
 
 
-// Bifurcation diagram - logic only
+// Bifurcation diagram - logic
 const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 	let data = [];
 	
@@ -240,8 +240,35 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 			x = i * x * (1 - x);
 			if(j > discard) {
 				column[j] = x;
+				data.push({j: column[j]});
 			}
 		}
-		
 	}
+	return data;
+}
+
+// Bifurcation diagram - plot
+const plotBifurcation = () => {
+	// Inputs
+	let iterations = document.getElementById('iterates-bifu').value;
+	let discard = document.getElementById('k-discard').value;
+	let initial = document.getElementById('bifu-initial').value;
+	let rStep = document.getElementById('r-step').value;
+	let rMin = document.getElementById('r-min').value;
+	let rMax = document.getElementById('r-max').value;
+	
+	// Input validation
+	if(iterations < 0 || iterations > 1000 ||
+	  discard >= iterations ||
+	  initial < 0 || initial > 1 ||
+	  rStep < 0 || rStep > 1 ||
+	  rMin < 0 || rMin > 4 ||
+	  rMax < 0 || rMax > 4) {
+		console.log('iterations =', iterations, 'discard =', discard, 'initial =', initial, 'rStep =', rStep, 'rMin =', rMin, 'rMax =', rMax);
+		alert('Invalid input, please try again.');
+		return 1;
+	} 
+	
+	let chartData = bifurcationDiagram(initial, rMin, rMax, rStep, iterations, discard);
+	console.log(chrtData);
 }
