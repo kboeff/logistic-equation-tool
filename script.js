@@ -270,5 +270,5 @@ const plotBifurcation = () => {
 	} 
 	
 	let chartData = bifurcationDiagram(initial, rMin, rMax, rStep, iterations, discard);
-	console.log(chrtData);
+	console.log(chartData);
 }
