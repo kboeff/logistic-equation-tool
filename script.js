@@ -187,7 +187,7 @@ const plotChart = (results, newLabels) => {
 
 
 // Calculate Average absolute difference
-// TODO: refactor code according to the DRY principle -> use logic from calcPoints
+// TODO: re-factor code according to the DRY principle -> use logic from calcPoints
 const calcAAD = () => {
 	if(!isDifChecked) {
 		return 1;
@@ -220,7 +220,7 @@ const calcAAD = () => {
 		x2 = coef2 * x2 * (1 - x2);
 		sum += Math.abs(x-x2);		
 	}
-	console.log(sum, iterations);
+	console.log(sum, iterations); // Not a debug log; show raw data if needed by the user
 	document.getElementById('aad-text').innerHTML = (sum/iterations).toFixed(5).toString();
 	return 0;	
 }
@@ -231,44 +231,52 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 	let data = [];
 	
 	// Iterate x-axis
-	for(let i = rMin; i <= rMax; i+=rStep) {
+	for(let i = rMin; i <= rMax; i += rStep) {
 		let column = {};
 		let x = x0;
 		
-		// filling the y-axis or column of dots
+		// Filling the y-axis or column of dots
+		// TODO: Remove duplicates as fixed points are reached
 		for(let j = 1; j <= n; j++) {
 			x = i * x * (1 - x);
 			if(j > discard) {
 				column[j] = x;
-				data.push({j: column[j]});
 			}
 		}
+		data[i] = column;
 	}
 	return data;
 }
 
 // Bifurcation diagram - plot
 const plotBifurcation = () => {
-	// Inputs
-	let iterations = document.getElementById('iterates-bifu').value;
-	let discard = document.getElementById('k-discard').value;
-	let initial = document.getElementById('bifu-initial').value;
-	let rStep = document.getElementById('r-step').value;
-	let rMin = document.getElementById('r-min').value;
-	let rMax = document.getElementById('r-max').value;
-	
+	// Inputs - is it the best solution to have them here?
+	let iterations = parseInt(document.getElementById('iterates-bifu').value);
+	let discard = parseInt(document.getElementById('k-discard').value);
+	let initial = parseFloat(document.getElementById('bifu-initial').value);
+	let rStep = parseFloat(document.getElementById('r-step').value);
+	let rMin = parseFloat(document.getElementById('r-min').value);
+	let rMax = parseFloat(document.getElementById('r-max').value);
+	// DEBUG: console.log('iterations =', iterations, 'discard =', discard, 'initial =', initial, 'rStep =', rStep, 'rMin =', rMin, 'rMax =', rMax);
+		
 	// Input validation
-	if(iterations < 0 || iterations > 1000 ||
-	  discard >= iterations ||
+	if(iterations < 0 || iterations > 1000 || discard >= iterations ||
 	  initial < 0 || initial > 1 ||
 	  rStep < 0 || rStep > 1 ||
 	  rMin < 0 || rMin > 4 ||
 	  rMax < 0 || rMax > 4) {
-		console.log('iterations =', iterations, 'discard =', discard, 'initial =', initial, 'rStep =', rStep, 'rMin =', rMin, 'rMax =', rMax);
 		alert('Invalid input, please try again.');
 		return 1;
 	} 
 	
 	let chartData = bifurcationDiagram(initial, rMin, rMax, rStep, iterations, discard);
-	console.log(chartData);
+	// DEBUG: console.log(chartData);
+	
+	// Drawing the chart on canvas
+	var c = document.getElementById("myChart");
+	var ctx = c.getContext("2d");
+	ctx.beginPath();
+	ctx.arc(100,75,50,0,2*Math.PI);
+	ctx.stroke();
+	
 }
