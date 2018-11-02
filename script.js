@@ -270,13 +270,50 @@ const plotBifurcation = () => {
 	} 
 	
 	let chartData = bifurcationDiagram(initial, rMin, rMax, rStep, iterations, discard);
-	// DEBUG: console.log(chartData);
+	console.log(chartData);
 	
 	// Drawing the chart on canvas
-	var c = document.getElementById("myChart");
-	var ctx = c.getContext("2d");
-	ctx.beginPath();
-	ctx.arc(100,75,50,0,2*Math.PI);
-	ctx.stroke();
+	let canvas = document.getElementById("myChart");
+	let ctx = canvas.getContext("2d");
+	let scale = 1;
+	let pointSize = 0.1;
+		
+	
+	/*
+	const resizeChart = () => {
+		if (window.innerWidth <= 500) {
+			scale = 1;
+		} else if (window.innerWidth >= 1000) {
+			scale = 2;
+		} else {
+			scale = window.innerWidth / 500;
+		}
+		
+		
+	}
+	resizeChart();	
+	window.onresize = resizeChart();
+	*/
+		
+	canvas.width = 400;
+	canvas.height = canvas.width / 2;
+	canvas.style.backgroundColor = "#eee";
+	
+	
+	
+	let xSpread = canvas.width / (rMax - rMin);
+	console.log(xSpread, rMax, rMin);
+
+	
+	for (let i in chartData) {
+		let x = (i - rMin) * xSpread * scale;
+		for (let j in chartData[i]) {
+			let y = chartData[i][j] * 200 * scale;
+			ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
+		}
+	}
+		
+	ctx.fillStyle = "#0ac0cf";
+	ctx.fill();
 	
 }
