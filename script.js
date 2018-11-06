@@ -251,14 +251,14 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 // Bifurcation diagram - plot
 const plotBifurcation = () => {
 	// Inputs - is it the best solution to have them here?
-	let iterations = parseInt(document.getElementById('iterates-bifu').value);
-	let discard = parseInt(document.getElementById('k-discard').value);
-	let initial = parseFloat(document.getElementById('bifu-initial').value);
-	let rStep = parseFloat(document.getElementById('r-step').value);
+	let iterations = parseInt(document.getElementById('iterates-bifu').value) || 100;
+	let discard = parseInt(document.getElementById('k-discard').value) || 50;
+	let initial = parseFloat(document.getElementById('bifu-initial').value) || 0.2;
+	let rStep = parseFloat(document.getElementById('r-step').value) || 0.01;
 	let rMin = parseFloat(document.getElementById('r-min').value);
-	let rMax = parseFloat(document.getElementById('r-max').value);
+	let rMax = parseFloat(document.getElementById('r-max').value) || 4.0;
 	// DEBUG: console.log('iterations =', iterations, 'discard =', discard, 'initial =', initial, 'rStep =', rStep, 'rMin =', rMin, 'rMax =', rMax);
-		
+
 	// Input validation
 	if(iterations < 0 || iterations > 1000 || discard >= iterations ||
 	  initial < 0 || initial > 1 ||
@@ -277,8 +277,8 @@ const plotBifurcation = () => {
 	let ctx = canvas.getContext("2d");
 	let scale = 1;
 	let pointSize = 0.1;
-		
 	
+		
 	/*
 	const resizeChart = () => {
 		if (window.innerWidth <= 500) {
@@ -295,25 +295,34 @@ const plotBifurcation = () => {
 	window.onresize = resizeChart();
 	*/
 		
-	canvas.width = 400;
+	canvas.width = 800;
 	canvas.height = canvas.width / 2;
 	canvas.style.backgroundColor = "#eee";
 	
-	
-	
 	let xSpread = canvas.width / (rMax - rMin);
-	console.log(xSpread, rMax, rMin);
-
+	//console.log(xSpread, rMax, rMin);
+	
 	
 	for (let i in chartData) {
 		let x = (i - rMin) * xSpread * scale;
 		for (let j in chartData[i]) {
-			let y = chartData[i][j] * 200 * scale;
+			let y = canvas.height - (chartData[i][j] * canvas.height * scale);
 			ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
 		}
 	}
 		
-	ctx.fillStyle = "#0ac0cf";
+	ctx.fillStyle = "#0a5e8c";
 	ctx.fill();
-	
+		
+	for (let k = rMin; k <= rMax; k += 0.1){ 
+		let x = (k - rMin) * xSpread * scale;
+		ctx.beginPath();
+		ctx.moveTo(x, canvas.height);
+		ctx.lineTo(x, canvas.height - 10);
+		ctx.strokeStyle="#ec7396";
+		ctx.stroke();
+		ctx.font = "10px Arial";
+		ctx.fillText(k.toFixed(1).toString(),x-6,canvas.height - 13);
+		
+	}
 }
