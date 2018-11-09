@@ -3,7 +3,7 @@ let isInstructed = true;
 const toggleInstructions = () => {
 	let show = document.getElementById('instructions');
 	let text = document.getElementById('instr-text');
-	text.innerHTML = 'The logistic equation (sometimes called the Verhulst model or logistic growth curve) is a model of population growth first published by Pierre Verhulst (1845, 1847). The model is continuous in time, but a modification of the continuous equation to a discrete quadratic recurrence equation known as the logistic map is used here.<br>x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>), where x<sub>0</sub> is the initial condition, R is a parameter and n is the count of the iterations we want.<br><br>There are a few options with this tool:<br>(1) Plot one logistic map - just fill in the three fields below and hit "Plot".<br>(2) Plot a difference between two different logistic maps - in this case use the checkbox to add more fields for the second scenario. This option is useful for visualizing sensitive dependence on the initial condition, as very small difference in x<sub>0</sub> lead to big discrepancies when using the same parameter(R) (i.e. R=3.72)<br>(3) Calculate Average Absolute Difference - optimized to use more iterations (up to 500,000) shows only the result, but doesn\'t plot the solution.<br><br>There are some default values preset in case a field is left empty.';
+	text.innerHTML = 'The logistic equation (sometimes called the Verhulst model or logistic growth curve) is a model of population growth first published by Pierre Verhulst (1845, 1847). The model is continuous in time, but a modification of the continuous equation to a discrete quadratic recurrence equation known as the logistic map is used here.<br>x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>), where x<sub>0</sub> is the initial condition, R is a parameter and n is the count of the iterations we want.<br><br>There are a few options with this tool:<br>(1) Plot one logistic map - just fill in the three fields below and hit "Plot".<br>(2) Plot a difference between two different logistic maps - in this case use the checkbox to add more fields for the second scenario. This option is useful for visualizing sensitive dependence on the initial condition, as very small difference in x<sub>0</sub> lead to big discrepancies when using the same parameter(R) (i.e. R=3.72)<br>(3) Calculate Average Absolute Difference - optimized to use more iterations (up to 500,000) shows only the result, but doesn\'t plot the solution.';
 	
 	if(isInstructed) {
 		show.innerHTML = 'Hide Instructions &lArr;';
@@ -61,12 +61,13 @@ differenceCheck.addEventListener('change', function(){
 // Calculate data points
 const calcPoints = () => {
 	// Get input values
-	let iterations = parseInt(document.getElementById('iterations').value) || 100;
-	let initial = parseFloat(document.getElementById('initial').value) || 0.2;
-	let coef = parseFloat(document.getElementById('coef').value) || 2.7;
+	let iterations = parseInt(document.getElementById('iterations').value);
 	
-	let init2 = parseFloat(initial2.value) || 0.2;
-	let coef2 = parseFloat(coeffitient2.value) || 2.7;
+	let initial = parseFloat(document.getElementById('initial').value);
+	let coef = parseFloat(document.getElementById('coef').value);
+	
+	let init2 = parseFloat(initial2.value);
+	let coef2 = parseFloat(coeffitient2.value);
 	
 	if(iterations < 0 || iterations > 2000 ||
 	  initial < 0 || initial > 1 ||
@@ -198,12 +199,12 @@ const calcAAD = () => {
 	}
 	
 	// Get input values
-	let iterations = parseInt(document.getElementById('iterations').value) || 100;
-	let initial = parseFloat(document.getElementById('initial').value) || 0.2;
-	let coef = parseFloat(document.getElementById('coef').value) || 2.7;
+	let iterations = parseInt(document.getElementById('iterations').value);
+	let initial = parseFloat(document.getElementById('initial').value);
+	let coef = parseFloat(document.getElementById('coef').value);
 	
-	let init2 = parseFloat(initial2.value) || 0.2;
-	let coef2 = parseFloat(coeffitient2.value) || 2.7;
+	let init2 = parseFloat(initial2.value);
+	let coef2 = parseFloat(coeffitient2.value);
 	
 	if(iterations < 0 || iterations > 500000 ||
 	  initial < 0 || initial > 1 ||
@@ -251,12 +252,12 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 // Bifurcation diagram - plot
 const plotBifurcation = () => {
 	// Inputs - is it the best solution to have them here?
-	let iterations = parseInt(document.getElementById('iterates-bifu').value) || 100;
-	let discard = parseInt(document.getElementById('k-discard').value) || 50;
-	let initial = parseFloat(document.getElementById('bifu-initial').value) || 0.2;
-	let rStep = parseFloat(document.getElementById('r-step').value) || 0.01;
+	let iterations = parseInt(document.getElementById('iterates-bifu').value);
+	let discard = parseInt(document.getElementById('k-discard').value);
+	let initial = parseFloat(document.getElementById('bifu-initial').value);
+	let rStep = parseFloat(document.getElementById('r-step').value);
 	let rMin = parseFloat(document.getElementById('r-min').value);
-	let rMax = parseFloat(document.getElementById('r-max').value) || 4.0;
+	let rMax = parseFloat(document.getElementById('r-max').value);
 	// DEBUG: console.log('iterations =', iterations, 'discard =', discard, 'initial =', initial, 'rStep =', rStep, 'rMin =', rMin, 'rMax =', rMax);
 
 	// Input validation
