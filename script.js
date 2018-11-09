@@ -26,7 +26,7 @@ modeCheck.addEventListener('change', function(){
 	if(this.checked) {
 		bifurcationChart.style.display = 'block';
 		mapChart.style.display = 'none';
-		modeText.innerHTML = 'Bifurcation Diagram';
+		modeText.innerHTML = 'Bifurcation Diagram (!Warning: don\'t run this on your phone. It will most probably crash it!)';
 		modeText.style.color = '#ec7396';
 		mapMode = false;
 	} else {
