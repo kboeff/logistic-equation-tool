@@ -277,7 +277,7 @@ const plotBifurcation = () => {
 	let canvas = document.getElementById("myChart");
 	let ctx = canvas.getContext("2d");
 	let scale = 1;
-	let pointSize = 0.1;
+	let pointSize = 0.5;
 	
 		
 	/*
@@ -295,19 +295,19 @@ const plotBifurcation = () => {
 	resizeChart();	
 	window.onresize = resizeChart();
 	*/
-		
+	// ... get elements, calculate data, etc
 	canvas.width = 800;
 	canvas.height = canvas.width / 2;
-	canvas.style.backgroundColor = "#eee";
+	canvas.style.backgroundColor = "#ffffff";
 	
 	let xSpread = canvas.width / (rMax - rMin);
 	//console.log(xSpread, rMax, rMin);
-	
 	
 	for (let i in chartData) {
 		let x = (i - rMin) * xSpread * scale;
 		for (let j in chartData[i]) {
 			let y = canvas.height - (chartData[i][j] * canvas.height * scale);
+			ctx.moveTo(x, y);
 			ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
 		}
 	}
