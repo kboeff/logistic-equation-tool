@@ -3,7 +3,7 @@ let isInstructed = true;
 const toggleInstructions = () => {
 	let show = document.getElementById('instructions');
 	let text = document.getElementById('instr-text');
-	text.innerHTML = 'The logistic equation (sometimes called the Verhulst model or logistic growth curve) is a model of population growth first published by Pierre Verhulst (1845, 1847). The model is continuous in time, but a modification of the continuous equation to a discrete quadratic recurrence equation known as the logistic map is used here.<br>x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>), where x<sub>0</sub> is the initial condition, R is a parameter and n is the count of the iterations we want.<br><br>There are a few options with this tool:<br>(1) Plot one logistic map - just fill in the three fields below and hit "Plot".<br>(2) Plot a difference between two different logistic maps - in this case use the checkbox to add more fields for the second scenario. This option is useful for visualizing sensitive dependence on the initial condition, as very small difference in x<sub>0</sub> lead to big discrepancies when using the same parameter(R) (i.e. R=3.72)<br>(3) Calculate Average Absolute Difference - optimized to use more iterations (up to 500,000) shows only the result, but doesn\'t plot the solution.';
+	text.innerHTML = 'The logistic equation (sometimes called the Verhulst model or logistic growth curve) is a model of population growth first published by Pierre Verhulst (1845, 1847). The model is continuous in time, but a modification of the continuous equation to a discrete quadratic recurrence equation known as the logistic map is used here.<br>x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>), where x<sub>0</sub> is the initial condition, R is a parameter and n is the count of the iterations we want.<br>There are a few options with this tool:<br><br><h4>Logistic map mode</h4>(1) Plot one logistic map - just fill in the three fields below and hit "Plot".<br>(2) Plot a difference between two different logistic maps - in this case use the checkbox to add more fields for the second scenario. This option is useful for visualizing sensitive dependence on the initial condition, as very small difference in x<sub>0</sub> lead to big discrepancies when using the same parameter(R) (i.e. R=3.72)<br>(3) Calculate Average Absolute Difference - optimized to use more iterations (up to 500,000) shows only the result, but doesn\'t plot the solution.<br><br><h4>Bifurcation diagram mode</h4>The bifurcation diagram explores the logistic maps of an initial condition for a range of parameter values. It\'s easy to spot where the system transitions from fixed point conditions to chaos following a beautiful visual pattern. First iterations are removed in order to get rid of the transient values and observe the stable/final state of the logistic map for the given constraints.';
 	
 	if(isInstructed) {
 		show.innerHTML = 'Hide Instructions &lArr;';
@@ -277,7 +277,7 @@ const plotBifurcation = () => {
 	let canvas = document.getElementById("myChart");
 	let ctx = canvas.getContext("2d");
 	let scale = 1;
-	let pointSize = 0.5;
+	let pointSize = 0.2;
 	
 		
 	/*
@@ -298,7 +298,7 @@ const plotBifurcation = () => {
 	// ... get elements, calculate data, etc
 	canvas.width = 800;
 	canvas.height = canvas.width / 2;
-	canvas.style.backgroundColor = "#ffffff";
+	canvas.style.backgroundColor = "#fffbfd";
 	
 	let xSpread = canvas.width / (rMax - rMin);
 	//console.log(xSpread, rMax, rMin);
