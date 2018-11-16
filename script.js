@@ -15,6 +15,37 @@ const toggleInstructions = () => {
 	isInstructed = !isInstructed;
 }
 
+// Switch Bifurcation diagram equation
+// Default: Logistic map
+let bifuMode = 1;
+
+const switchEquation = () => {
+	let equationText = document.getElementById('bifurcation-mode');
+	bifuMode += 1;
+	if (bifuMode > 3) {
+		bifuMode = 1;
+	}
+	switch(bifuMode) {
+		case 1: 
+			equationText.innerHTML = 'Logistic: x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>)';
+			equationText.style.color = "#ec7395";
+			break;
+		case 2: 
+			equationText.innerHTML = 'Equation: x<sub>n+1</sub> = r - x<sub>n</sub><sup>2</sup>';
+			equationText.style.color = "#0ac0cf";
+			break;
+		case 3: 
+			equationText.innerHTML = 'Mandelbrot: x<sub>n+1</sub> = x<sub>n</sub><sup>2</sup> + c';
+			equationText.style.color = "#000";
+			break;
+		default:
+			console.log('Wrong switch value');
+			return -1;
+	}
+	
+	return bifuMode;
+}
+
 // Handling checkbox events for Toggle Mode
 let modeCheck = document.getElementById('check-mode');
 let modeText = document.getElementsByClassName('top-text')[0];
@@ -238,11 +269,34 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 		
 		// Filling the y-axis or column of dots
 		// TODO: Remove duplicates as fixed points are reached
-		for(let j = 1; j <= n; j++) {
-			x = i * x * (1 - x);
-			if(j > discard) {
-				column[j] = x;
-			}
+		switch (bifuMode) {
+			case 1:
+				for(let j = 1; j <= n; j++) {
+					x = i * x * (1 - x);
+					if(j > discard) {
+						column[j] = x;
+					}
+				}
+				break;
+			case 2:
+				for(let j = 1; j <= n; j++) {
+					x = i - x * x;
+					if(j > discard) {
+						column[j] = x;
+					}
+				}
+				break;
+			case 3:
+				for(let j = 1; j <= n; j++) {
+					x = i + x * x;
+					if(j > discard) {
+						column[j] = x;
+					}
+				}
+				break;
+			default:
+				console.log("Wrong bifuMode value!");
+				break;
 		}
 		data[i] = column;
 	}
@@ -298,7 +352,7 @@ const plotBifurcation = () => {
 	// ... get elements, calculate data, etc
 	canvas.width = 800;
 	canvas.height = canvas.width / 2;
-	canvas.style.backgroundColor = "#fffbfd";
+	canvas.style.backgroundColor = "#fdfbff";
 	
 	let xSpread = canvas.width / (rMax - rMin);
 	//console.log(xSpread, rMax, rMin);
@@ -320,7 +374,7 @@ const plotBifurcation = () => {
 		ctx.beginPath();
 		ctx.moveTo(x, canvas.height);
 		ctx.lineTo(x, canvas.height - 10);
-		ctx.strokeStyle="#ec7396";
+		ctx.strokeStyle="#000000";
 		ctx.stroke();
 		ctx.font = "10px Arial";
 		ctx.fillText(k.toFixed(1).toString(),x-6,canvas.height - 13);

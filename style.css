@@ -118,6 +118,14 @@ input:checked + .slider:before {
 	display: inline-block;
 	vertical-align: top;
 }
+.in-line sub {
+	display: inline-block;
+	vertical-align: sub;
+}
+.in-line sup {
+	display: inline-block;
+	vertical-align: super;
+}
 
 .top-text {
 	margin-top: 4px;
@@ -185,6 +193,19 @@ input:checked + .slider:before {
 	color: #fff;
 }
 
+#bifurcation-mode {
+	color: #ec7395;
+}
+
+#switch-bifu-mode {
+	border: 0px solid #0aafcc;
+	border-radius: 5px;
+	width: 80px;
+	height: 30px;
+	background-color: #000;
+	color: #fff;
+}
+
 #aad-btn {
 	border: 0px solid #0aafcc;
 	border-radius: 5px;
@@ -197,7 +218,7 @@ input:checked + .slider:before {
 	margin-bottom: 0px;
 }
 
-.plot-btn:hover, #aad-btn:hover {
+.plot-btn:hover, #aad-btn:hover, #switch-bifu-mode:hover {
 	background-color: #0ac0cf;
 	color: #fff;
 	cursor: pointer;
