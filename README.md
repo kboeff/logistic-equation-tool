@@ -15,7 +15,7 @@ bifurcationDiagram(…) // calculates the data
 plotBifurcation() // takes the result of bifurcationDiagram() and draws it in the canvas
 </code><br>
 The code for the Logistic map is similar:
-<code>
+<br><code>
 calcPoints() // calculates the data points
 </code><br>
 <code>
