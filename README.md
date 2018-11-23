@@ -40,8 +40,5 @@ input:focus + input + .hint {
 	<li>Besides the performance issues, there are some side effects of using Chart.js. The eventListeners it uses for showing value of data points when you hover over the chart remain active after you draw the other chart (bifurcation diagram), so these must be cleared additionally.</li>
 <li>Many global variables, used for handling HTML elements, are hanging around, which could be enclosed in functions.</li>
 	</ul>
-<<<<<<< HEAD
 </ol>
-=======
-	</ol>
 
