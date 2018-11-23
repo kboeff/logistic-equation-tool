@@ -8,13 +8,17 @@ Using Chart.js for the visual part.
 
 <ol>
 <li> One thing I like about the code is that there are different functions for handling the calculation of the data points and the actual plotting of the diagram.
-<code>
+<br><code>
 bifurcationDiagram(…) // calculates the data
+</code><br>
+<code>
 plotBifurcation() // takes the result of bifurcationDiagram() and draws it in the canvas
 </code><br>
 The code for the Logistic map is similar:
 <code>
 calcPoints() // calculates the data points
+</code><br>
+<code>
 plotChart() // plots the chart
 </code><br>
 The difference here is that calcPoints() also handles the inputs, whereas bifurcationDiagram() doesn’t handle any global objects/variables. I couldn’t figure out which approach is better practice. Maybe there should be a separate function that handles and validates input only, second function for calculation and third for drawing.
@@ -24,6 +28,8 @@ The difference here is that calcPoints() also handles the inputs, whereas bifurc
 input:focus + .hint {
 	display: inline;
 }
+</code><br>
+<code>
 input:focus + input + .hint {
 	display: inline;
 }
