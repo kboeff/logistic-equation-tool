@@ -27,6 +27,8 @@ input:focus + input + .hint {
 	display: inline;
 }
 </code><br>
-<strong>(3)</strong> <em>On the negative side:</em> The general issue with the tool is that it's lacking good preparation and planning of the execution. It started as a project for displaying one kind of map and later I decided to add more complicated chart (the bifurcation diagram), and UI features: switch modes, hints and show/hide instructions. As a result it's not very mobile friendly (it crashes my iPhone, works only on desktop Chrome and Firefox).<br>
-Besides the performance issues, there are some side effects of using Chart.js. The eventListeners it uses for showing value of data points when you hover over the chart remain active after you draw the other chart (bifurcation diagram), so these must be cleared additionally.<br>
-Many global variables, used for handling HTML elements, are hanging around, which could be enclosed in functions.
+<strong>(3)</strong> <em>On the negative side:</em> <ul>
+	<li>The general issue with the tool is that it's lacking good preparation and planning of the execution. It started as a project for displaying one kind of map and later I decided to add more complicated chart (the bifurcation diagram), and UI features: switch modes, hints and show/hide instructions. As a result it's not very mobile friendly (it crashes my iPhone, works only on desktop Chrome and Firefox).</li>
+	<li>Besides the performance issues, there are some side effects of using Chart.js. The eventListeners it uses for showing value of data points when you hover over the chart remain active after you draw the other chart (bifurcation diagram), so these must be cleared additionally.</li>
+<li>Many global variables, used for handling HTML elements, are hanging around, which could be enclosed in functions.</li>
+	</ul>
