@@ -146,7 +146,9 @@ input:checked + .slider:before {
   animation-iteration-count: 2;
 }
 
-
+.faded {
+	color: #aaa;
+}
 /* Form inputs and buttons */ 
 
 .main-section {

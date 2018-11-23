@@ -35,21 +35,22 @@
 	<div class='form-container' id='map-chart'>
 		<form>
 		<p><strong>Logistic Map</strong></p>
+		<p class="faded">Try the placeholder values for a demo</p>
 		<div class='form-group'>
 			<div class='labels'><label for='iterations'>Iterations</label></div>
-			<input class="form-control" id='iterations' type="number">
+			<input class="form-control" id='iterations' type="number" placeholder="500">
 			<p class='hint'>Plot from 0 to 2,000, AAD from 0 to 500,000</p>
 		</div>
 		<div class="form-group">
 			<div class='labels'><label for='initial'>Initial condition</label></div>
-			<input class="form-control" id='initial' type="number" step='0.0000001'>
-			<input class="form-control" id='initial2' type="number" step='0.0000001'>
+			<input class="form-control" id='initial' type="number" step='0.0000001' placeholder="0.2">
+			<input class="form-control" id='initial2' type="number" step='0.0000001' placeholder="0.200001">
 			<p class='hint'>Floating point number from 0 to 1</p>
 		</div>
 		<div class="form-group">
 			<div class='labels'><label for='coef'>R</label></div>
-			<input class="form-control" id='coef' type="number" step='0.0000001'>
-			<input class="form-control" id='coef2' type="number" step='0.0000001'>
+			<input class="form-control" id='coef' type="number" step='0.0000001' placeholder="3.72">
+			<input class="form-control" id='coef2' type="number" step='0.0000001' placeholder="3.72">
 			<p class='hint'>Floating point number from 0 to 4</p>
 		</div>
 		<div class='container in-line'>
@@ -73,6 +74,7 @@
 	<div class='form-container' id='bifurcation-chart'>
 		<form>
 		<p><strong>Bifurcation Diagram</strong></p>
+		<p class="faded">Try the placeholder values for a demo</p>
 		<!-- To display the Mandelbrot fractal, the data must be adjusted to the canvas dimensions...
 		<div class='container in-line' id='radio-section'>
 			<button id='switch-bifu-mode' type='button' onclick='switchEquation()'>Switch</button>	
@@ -81,32 +83,32 @@
 		-->
 		<div class="form-group">
 			<div class='labels'><label for='iterates-bifu'>Iterations <em>n</em></label></div>
-			<input class="form-control bifu" id='iterates-bifu' type="number">
+			<input class="form-control bifu" id='iterates-bifu' type="number" placeholder="1000">
 			<p class='hint'>Integer from 0 to 1000</p>
 		</div>
 		<div class="form-group">
 			<div class='labels'><label for='k-discard'>Discard first <em>k</em></label></div>
-			<input class="form-control bifu" id='k-discard' type="number">
+			<input class="form-control bifu" id='k-discard' type="number" placeholder="500">
 			<p class='hint'>Integer less than <em>n</em> - first <em>k</em> iterates are not included in the chart</p>
 		</div>		
 		<div class='form-group'>
 			<div class='labels'><label for='bifu-initial'>Initial condition <em>x<sub>0</sub></em></label></div>
-			<input class="form-control bifu" id='bifu-initial' type="number" step='0.0000001'>
+			<input class="form-control bifu" id='bifu-initial' type="number" step='0.0000001' placeholder="0.2">
 			<p class='hint'>Floating point number from 0 to 1</p>
 		</div>
 		<div class='form-group'>
 			<div class='labels'><label for='r-step'><em>r<sub>step</sub></em></label></div>
-			<input class="form-control bifu" id='r-step' type="number" step='0.0000001'>
+			<input class="form-control bifu" id='r-step' type="number" step='0.0000001' placeholder="0.001">
 			<p class='hint'>Floating point number from 0 to 1</p>
 		</div>
 		<div class="form-group">
 			<div class='labels'><label for='r-min'><em>r<sub>min</sub></em></label></div>
-			<input class="form-control bifu" id='r-min' type="number" step='0.0000001'>
+			<input class="form-control bifu" id='r-min' type="number" step='0.0000001' placeholder="2.4">
 			<p class='hint'>Floating point number from 0 to 4</p>
 		</div>
 		<div class="form-group">
 			<div class='labels'><label for='r-max'><em>r<sub>max</sub></em></label></div>
-			<input class="form-control bifu" id='r-max' type="number" step='0.0000001'>
+			<input class="form-control bifu" id='r-max' type="number" step='0.0000001' placeholder="4.0">
 			<p class='hint'>Floating point number from 0 to 4</p>
 		</div>
 		

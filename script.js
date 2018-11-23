@@ -15,37 +15,6 @@ const toggleInstructions = () => {
 	isInstructed = !isInstructed;
 }
 
-// Switch Bifurcation diagram equation
-// Default: Logistic map
-let bifuMode = 1;
-
-const switchEquation = () => {
-	let equationText = document.getElementById('bifurcation-mode');
-	bifuMode += 1;
-	if (bifuMode > 3) {
-		bifuMode = 1;
-	}
-	switch(bifuMode) {
-		case 1: 
-			equationText.innerHTML = 'Logistic: x<sub>n+1</sub> = Rx<sub>n</sub>(1 - x<sub>n</sub>)';
-			equationText.style.color = "#ec7395";
-			break;
-		case 2: 
-			equationText.innerHTML = 'Equation: x<sub>n+1</sub> = r - x<sub>n</sub><sup>2</sup>';
-			equationText.style.color = "#0ac0cf";
-			break;
-		case 3: 
-			equationText.innerHTML = 'Mandelbrot: x<sub>n+1</sub> = x<sub>n</sub><sup>2</sup> + c';
-			equationText.style.color = "#000";
-			break;
-		default:
-			console.log('Wrong switch value');
-			return -1;
-	}
-	
-	return bifuMode;
-}
-
 // Handling checkbox events for Toggle Mode
 let modeCheck = document.getElementById('check-mode');
 let modeText = document.getElementsByClassName('top-text')[0];
@@ -57,7 +26,7 @@ modeCheck.addEventListener('change', function(){
 	if(this.checked) {
 		bifurcationChart.style.display = 'block';
 		mapChart.style.display = 'none';
-		modeText.innerHTML = 'Bifurcation Diagram (!Warning: don\'t run this on your phone. It will most probably crash it!)';
+		modeText.innerHTML = 'Bifurcation Diagram';
 		modeText.style.color = '#ec7396';
 		mapMode = false;
 	} else {
@@ -93,10 +62,8 @@ differenceCheck.addEventListener('change', function(){
 const calcPoints = () => {
 	// Get input values
 	let iterations = parseInt(document.getElementById('iterations').value);
-	
 	let initial = parseFloat(document.getElementById('initial').value);
 	let coef = parseFloat(document.getElementById('coef').value);
-	
 	let init2 = parseFloat(initial2.value);
 	let coef2 = parseFloat(coeffitient2.value);
 	
@@ -219,7 +186,6 @@ const plotChart = (results, newLabels) => {
 
 
 // Calculate Average absolute difference
-// TODO: re-factor code according to the DRY principle -> use logic from calcPoints
 const calcAAD = () => {
 	if(!isDifChecked) {
 		return 1;
@@ -268,36 +234,13 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 		let x = x0;
 		
 		// Filling the y-axis or column of dots
-		// TODO: Remove duplicates as fixed points are reached
-		switch (bifuMode) {
-			case 1:
-				for(let j = 1; j <= n; j++) {
-					x = i * x * (1 - x);
-					if(j > discard) {
-						column[j] = x;
-					}
+		for(let j = 1; j <= n; j++) {
+				x = i * x * (1 - x);
+				if(j > discard) {
+					column[j] = x;
 				}
-				break;
-			case 2:
-				for(let j = 1; j <= n; j++) {
-					x = i - x * x;
-					if(j > discard) {
-						column[j] = x;
-					}
-				}
-				break;
-			case 3:
-				for(let j = 1; j <= n; j++) {
-					x = i + x * x;
-					if(j > discard) {
-						column[j] = x;
-					}
-				}
-				break;
-			default:
-				console.log("Wrong bifuMode value!");
-				break;
 		}
+		
 		data[i] = column;
 	}
 	return data;
@@ -332,7 +275,6 @@ const plotBifurcation = () => {
 	let ctx = canvas.getContext("2d");
 	let scale = 1;
 	let pointSize = 0.2;
-	
 		
 	/*
 	const resizeChart = () => {
@@ -368,7 +310,8 @@ const plotBifurcation = () => {
 		
 	ctx.fillStyle = "#0a5e8c";
 	ctx.fill();
-		
+	
+	// Add scale	
 	for (let k = rMin; k <= rMax; k += 0.1){ 
 		let x = (k - rMin) * xSpread * scale;
 		ctx.beginPath();
