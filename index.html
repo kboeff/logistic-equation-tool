@@ -120,8 +120,14 @@
 	</section>
 	
 	<section id='output'>
+		<!-- Two <canvas> objects for the different types of charts are needed -->
+		<!-- This one for Chart.js only. It adds multiple event listeners for hover, which interfere if the Bifurcation map is also displayed on this canvas. -->
 		<div class='chart container'>
-			<canvas id='myChart'></canvas>
+			<canvas id='logisticChart'></canvas>
+		</div>
+		<!-- Only used by the Bifurcation map -->
+		<div class='chart container'>
+			<canvas id='bifurcationChart'></canvas>
 		</div>
 	</section>
 	

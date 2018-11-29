@@ -117,7 +117,13 @@ const calcPoints = () => {
 
 // Rendering the chart
 const plotChart = (results, newLabels) => {
-	let myChart = document.getElementById('myChart').getContext('2d');
+	let oldCanvas = document.getElementById("bifurcationChart");
+	oldCanvas.style.display = 'none';
+	
+	// Drawing the chart on canvas
+	let canvas = document.getElementById("logisticChart");
+	canvas.style.display = 'block';
+	let myChart = canvas.getContext('2d');
 	let yLabel = 'x(n)';
 	if(isDifChecked) {
 		yLabel = "x(n) - x\'(n)";
@@ -270,8 +276,13 @@ const plotBifurcation = () => {
 	let chartData = bifurcationDiagram(initial, rMin, rMax, rStep, iterations, discard);
 	console.log(chartData);
 	
+	// Hide old canvas if visible
+	let oldCanvas = document.getElementById("logisticChart");
+	oldCanvas.style.display = 'none';
+	
 	// Drawing the chart on canvas
-	let canvas = document.getElementById("myChart");
+	let canvas = document.getElementById("bifurcationChart");
+	canvas.style.display = 'block';
 	let ctx = canvas.getContext("2d");
 	let scale = 1;
 	let pointSize = 0.2;
@@ -285,8 +296,6 @@ const plotBifurcation = () => {
 		} else {
 			scale = window.innerWidth / 500;
 		}
-		
-		
 	}
 	resizeChart();	
 	window.onresize = resizeChart();
