@@ -1,5 +1,7 @@
 // Show/Hide the instructions for use
 let isInstructed = true;
+let globalScale = window.innerWidth / 850;
+
 const toggleInstructions = () => {
 	let show = document.getElementById('instructions');
 	let text = document.getElementById('instr-text');
@@ -246,14 +248,18 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 					column[j] = x;
 				}
 		}
-		
+
 		data[i] = column;
 	}
 	return data;
 }
 
 // Bifurcation diagram - plot
-const plotBifurcation = () => {
+const plotBifurcation = (globalScale) => {
+	let animeButton = document.getElementById('plot-btn-bifu');
+	animeButton.classList = "plot-btn bifu";
+	
+	
 	// Inputs - is it the best solution to have them here?
 	let iterations = parseInt(document.getElementById('iterates-bifu').value);
 	let discard = parseInt(document.getElementById('k-discard').value);
@@ -284,34 +290,23 @@ const plotBifurcation = () => {
 	let canvas = document.getElementById("bifurcationChart");
 	canvas.style.display = 'block';
 	let ctx = canvas.getContext("2d");
-	let scale = 1;
+	let scale = globalScale;
 	let pointSize = 0.2;
 		
-	/*
-	const resizeChart = () => {
-		if (window.innerWidth <= 500) {
-			scale = 1;
-		} else if (window.innerWidth >= 1000) {
-			scale = 2;
-		} else {
-			scale = window.innerWidth / 500;
-		}
-	}
-	resizeChart();	
-	window.onresize = resizeChart();
-	*/
+	
 	// ... get elements, calculate data, etc
-	canvas.width = 800;
-	canvas.height = canvas.width / 2;
+	canvas.width = 800 * scale;
+	canvas.height = (canvas.width / 2) * scale;
 	canvas.style.backgroundColor = "#fdfbff";
 	
 	let xSpread = canvas.width / (rMax - rMin);
 	//console.log(xSpread, rMax, rMin);
 	
 	for (let i in chartData) {
-		let x = (i - rMin) * xSpread * scale;
+		let x = (i - rMin) * xSpread;
 		for (let j in chartData[i]) {
-			let y = canvas.height - (chartData[i][j] * canvas.height * scale);
+			let y = (canvas.height - (chartData[i][j] * canvas.height));
+			// console.log(x,y);
 			ctx.moveTo(x, y);
 			ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
 		}
@@ -322,7 +317,7 @@ const plotBifurcation = () => {
 	
 	// Add scale	
 	for (let k = rMin; k <= rMax; k += 0.1){ 
-		let x = (k - rMin) * xSpread * scale;
+		let x = (k - rMin) * xSpread;
 		ctx.beginPath();
 		ctx.moveTo(x, canvas.height);
 		ctx.lineTo(x, canvas.height - 10);
@@ -332,4 +327,23 @@ const plotBifurcation = () => {
 		ctx.fillText(k.toFixed(1).toString(),x-6,canvas.height - 13);
 		
 	}
+}
+
+
+const resizeChart = () => {
+	let scale = 1;
+	if (window.innerWidth == 1200) {
+		scale = 1200 / 850;
+	} else {
+		scale = window.innerWidth / 850;
+	}
+	
+	return scale;
+}
+
+
+window.onresize = () => {
+	globalScale = resizeChart();
+	let animeButton = document.getElementById('plot-btn-bifu');
+	animeButton.classList = "plot-btn bifu animated flash delay-0.5s";
 }
