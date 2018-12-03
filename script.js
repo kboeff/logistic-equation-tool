@@ -23,6 +23,8 @@ let modeText = document.getElementsByClassName('top-text')[0];
 let mapMode = true;
 let mapChart = document.getElementById('map-chart');
 let bifurcationChart = document.getElementById('bifurcation-chart');
+let bifuContainer = document.getElementById('bifu-container');
+bifuContainer.style.display = 'none';
 
 modeCheck.addEventListener('change', function(){ 
 	if(this.checked) {
@@ -31,12 +33,14 @@ modeCheck.addEventListener('change', function(){
 		modeText.innerHTML = 'Bifurcation Diagram';
 		modeText.style.color = '#ec7396';
 		mapMode = false;
+
 	} else {
 		bifurcationChart.style.display = 'none';
 		mapChart.style.display = 'block';
 		modeText.innerHTML = 'Logistic Map';
 		modeText.style.color = '#fff';
 		mapMode = true;
+
 	}
 });
 
@@ -258,6 +262,7 @@ const bifurcationDiagram = (x0, rMin, rMax, rStep, n, discard) =>  {
 const plotBifurcation = (globalScale) => {
 	let animeButton = document.getElementById('plot-btn-bifu');
 	animeButton.classList = "plot-btn bifu";
+	bifuContainer.style.display = 'block';
 	
 	
 	// Inputs - is it the best solution to have them here?
@@ -296,7 +301,7 @@ const plotBifurcation = (globalScale) => {
 	
 	// ... get elements, calculate data, etc
 	canvas.width = 800 * scale;
-	canvas.height = (canvas.width / 2) * scale;
+	canvas.height = canvas.width / 2;
 	canvas.style.backgroundColor = "#fdfbff";
 	
 	let xSpread = canvas.width / (rMax - rMin);
